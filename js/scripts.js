@@ -11,15 +11,23 @@ function validateForm(e){
     if (validateUsername() && validateEmail() && validatePassword()) {
         var _newUser = getUserName();   
         // add code to update registeredUsers array with new user and call render function
-        // TODO
+        registeredUsers.push({ 
+            username: document.registration.username.value,
+            firstname: document.registration.firstname.value,
+            lastname: document.registration.lastname.value,
+            email: document.registration.email.value
+        })
+        registeredUsers.length > 5 && registeredUsers.shift() // shift the array if it's larger than 5 users
+        renderRegisteredUsers()
         document.registration.reset(); // reset form input fields
     }
 }
 
 function renderRegisteredUsers() {
+    document.getElementById('registered-users').innerHTML = ''
     registeredUsers.forEach(function(registeredUser){
         var _newUser = document.createElement('li'); 
-        _newUser.innerHTML = registeredUser;
+        _newUser.innerHTML = JSON.stringify(registeredUser);
         document.getElementById('registered-users').appendChild(_newUser);
     });
 }
@@ -32,6 +40,14 @@ function validateUsername(){
     var _userName = getUserName();
     
     return !checkSpace(_userName);
+}
+
+function validateFirstName() {
+    return !!document.registration.firstname && !!document.registration.firstname.value
+}
+
+function validateFirstName() {
+    return !!document.registration.lastname && !!document.registration.lastname.value
 }
 
 /**
@@ -79,6 +95,10 @@ function validatePassword() {
         return false;
     }
 
+    if (_password.length < 8) {
+        return false
+    }
+
     return true;
 }
 
@@ -100,21 +120,49 @@ function checkSpace(sample) {
  * @returns [Boolean] true when valid, false otherwise
  */
 function getUserName() {
-    if (typeof(document.registration.username.value) === 'undefined') {
-        return '';
+    if (typeof(document.registration.username) === 'undefined') {
+        return ''
     } else {
-        return document.registration.username.value;
+        return document.registration.username.value
+    }   
+}
+
+function getFirstName() {
+    if (typeof(document.registration.firstname) === 'undefined') {
+        return ''
+    } else {
+        return document.registration.firstname.value
+    }   
+}
+
+function getLastName() {
+    if (typeof(document.registration.lastname) === 'undefined') {
+        return ''
+    } else {
+        return document.registration.lastname.value
     }   
 }
 
 function getEmail() {
-    // TODO
+    if (typeof(document.registration.email) === 'undefined') {
+        return ''
+    } else {
+        return document.registration.email.value
+    }
 }
 
 function getPassword() {
-    // TODO
+    if (typeof(document.registration.password) === 'undefined') {
+        return ''
+    } else {
+        return document.registration.password.value
+    }
 }
 
 function getConfirmPassword() {
-    // TODO
+    if (typeof(document.registration.password_confirm) === 'undefined') {
+        return ''
+    } else {
+        return document.registration.password_confirm.value
+    }
 }
