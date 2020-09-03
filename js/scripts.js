@@ -8,8 +8,7 @@ function validateForm(e){
     console.log('email: ' + validateEmail());
     console.log('password: ' + validatePassword());
 
-    if (validateUsername() && validateEmail() && validatePassword()) {
-        var _newUser = getUserName();   
+    if (validateUsername() && validateEmail() && validatePassword()) { 
         // add code to update registeredUsers array with new user and call render function
         registeredUsers.push({ 
             username: document.registration.username.value,
@@ -24,11 +23,9 @@ function validateForm(e){
 }
 
 function renderRegisteredUsers() {
-    document.getElementById('registered-users').innerHTML = ''
+    $('#registered-users').empty()
     registeredUsers.forEach(function(registeredUser){
-        var _newUser = document.createElement('li'); 
-        _newUser.innerHTML = JSON.stringify(registeredUser);
-        document.getElementById('registered-users').appendChild(_newUser);
+        $(`<li>${JSON.stringify(registeredUser)}</li>`).appendTo('#registered-users')
     });
 }
 
@@ -120,49 +117,25 @@ function checkSpace(sample) {
  * @returns [Boolean] true when valid, false otherwise
  */
 function getUserName() {
-    if (typeof(document.registration.username) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.username.value
-    }   
+    return $('[name="username"]').val()
 }
 
 function getFirstName() {
-    if (typeof(document.registration.firstname) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.firstname.value
-    }   
+    return $('[name="firstname"]').val()
 }
 
 function getLastName() {
-    if (typeof(document.registration.lastname) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.lastname.value
-    }   
+    return $('[name="lastname"]').val()
 }
 
 function getEmail() {
-    if (typeof(document.registration.email) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.email.value
-    }
+    return $('[name="email"]').val()
 }
 
 function getPassword() {
-    if (typeof(document.registration.password) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.password.value
-    }
+    return $('[name="password"]').val()
 }
 
 function getConfirmPassword() {
-    if (typeof(document.registration.password_confirm) === 'undefined') {
-        return ''
-    } else {
-        return document.registration.password_confirm.value
-    }
+    return $('[name="password_confirm"]').val()
 }
