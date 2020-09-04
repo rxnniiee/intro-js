@@ -18,7 +18,7 @@ function addSlide(imgUrl = '//placehold.it/960x350?text=unspecified-960w') {
 
   image.setAttribute('data-lazy', imgUrl)
   image.setAttribute('data-srcset', imgUrl)
-  image.setAttribute('data-sizes', '100vw')
+  image.setAttribute('data-sizes', '50vw')
 
   slide.appendChild(image)
   slider.appendChild(slide)
