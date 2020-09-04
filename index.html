@@ -9,41 +9,45 @@
     $(document).ready(function () {
 
       $('#show').click(function () {
-        // TODO: show theDiv element
+        $('#theDiv').show()
       });
 
       $('#hide').click(function () {
-        // TODO: hide theDiv element
+        $('#theDiv').hide()
       });
 
       $('#toggle').click(function () {
-        // TODO: toggle hide/show theDiv Element
+        $('#theDiv').toggle()
       });
 
       $('#fadein').click(function () {
-        $('#theDiv').fadeIn(2000, oncomplete); // 10 seconds in miliseconds
+        $('#theDiv').fadeIn(10000, oncomplete); // 10 seconds in miliseconds
         $('#theDiv2').fadeIn();
       });
 
       $('#fadeout').click(function () {
-        $('#theDiv').fadeOut(2000, oncomplete); // 10 seconds in miliseconds
+        $('#theDiv').fadeOut(10000, oncomplete); // 10 seconds in miliseconds
         $('#theDiv2').fadeOut();
       });
 
       $('#fadeto3').click(function () {
         // TODO: fade theDiv to 30% opactity in 2 seconds
+        $('#theDiv').fadeTo(2000, 0.3, oncomplete);
       });
 
       $('#fadeup').click(function () {
         // TODO: fade theDiv element to 100% in 5 seconds
+        $('#theDiv').fadeTo(5000, 1, oncomplete);
       });
 
       $('#slideup').click(function () {
         // TODO: slide the element up
+        $('#theDiv').slideUp()
       });
 
       $('#slidedown').click(function () {
         // TODO: fade the element down
+        $('#theDiv').slideDown()
       });
 
       function clickPulsateButton() {
@@ -57,6 +61,9 @@
       $('#all').click(function () {
         // TODO: animate element to the right, and increase font size to 200
         // call oncomplete function when animation is completed
+        $('#theDiv').animate({
+          fontSize: '200px'
+        }, oncomplete)
       });
 
       $('#all').click(moveRight);
