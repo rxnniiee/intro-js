@@ -6,16 +6,19 @@ const SECONDHAND  = document.querySelector('#second')
 function tick() {
   const date = new Date()
 
-  const deltaHours    = (360 / 60) * date.getHours()
-  const deltaMinutes  = (360 / 60) * date.getMinutes()
-  const deltaSeconds  = (360 / 60) * date.getSeconds()
+  const hours   = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+
+  const deltaHours    = (360 / 12) * (hours + (minutes / 60) + (minutes / 360))
+  const deltaMinutes  = (360 / 60) * (minutes + (seconds / 60))
+  const deltaSeconds  = (360 / 60) * (seconds)
 
   HOURHAND.style.transform    = `rotate(${deltaHours}deg)`
   MINUTEHAND.style.transform  = `rotate(${deltaMinutes}deg)`
   SECONDHAND.style.transform  = `rotate(${deltaSeconds}deg)`
+
+  requestAnimationFrame(tick)
 }
 
-setInterval(tick, 1000)
-
-// execute the tick function on page load unless we want to wait for setInterval to kick in (1000ms!!!)
-tick()
+requestAnimationFrame(tick)
